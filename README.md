@@ -3,6 +3,11 @@
 
 <br />
 
+### ERD
+<img src="https://user-images.githubusercontent.com/97418591/221153462-e6564af2-03f7-4fe0-b912-02f95161c82e.png" width="700" height="400"/>
+
+<br />
+
 ### commit message convention
 <ol>
 <li>feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
