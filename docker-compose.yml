@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  pg:
+    image: postgres:14.7
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USERNAME: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      POSTGRES_DATABASE: '${DB_DATABASE}'
+  app:
+    depends_on:
+      - pg
+    build: .
+    environment:
+      DB_HOST: pg
+      DB_PORT: '${DB_PORT}'
+      DB_USERNAME: '${DB_USERNAME}'
+      DB_PASSWORD: '${DB_PASSWORD}'
+      DB_DATABASE: '${DB_DATABASE}'
+      ACCESS_TOKEN_SECRET_KEY: '${ACCESS_TOKEN_SECRET_KEY}'
+      ACCESS_TOKEN_EXPIRATION_TIME: '${ACCESS_TOKEN_EXPIRATION_TIME}'
+      REFRESH_TOKEN_SECRET_KEY: '${REFRESH_TOKEN_SECRET_KEY}'
+      REFRESH_TOKEN_EXPIRATION_TIME: '${REFRESH_TOKEN_EXPIRATION_TIME}'
+    ports:
+      - 3000:3000
