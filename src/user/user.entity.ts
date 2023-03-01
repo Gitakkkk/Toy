@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Exclude } from 'class-transformer';
-import { Post } from 'src/post/post.entity';
+import { Article } from 'src/article/article.entity';
 import { Like } from 'src/like/like.entity';
 import { Comment } from 'src/comment/comment.entity';
 import { CommentReply } from 'src/comment_reply/comment_reply.entity';
@@ -26,8 +26,8 @@ export class User {
   @Exclude()
   refreshToken?: string;
 
-  @OneToMany(() => Post, (post) => post.user_id)
-  posts: Post[];
+  @OneToMany(() => Article, (article) => article.user_id)
+  posts: Article[];
 
   @OneToMany(() => Like, (like) => like.user_id)
   likes: Like[];

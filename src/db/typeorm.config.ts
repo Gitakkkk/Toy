@@ -2,7 +2,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { config } from 'dotenv';
 import { CommentReply } from 'src/comment_reply/comment_reply.entity';
 import { Like } from 'src/like/like.entity';
-import { Post } from 'src/post/post.entity';
+import { Article } from 'src/article/article.entity';
 import { User } from 'src/user/user.entity';
 import { Comment } from 'src/comment/comment.entity';
 config();
@@ -14,6 +14,6 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: [User, Post, Comment, CommentReply, Like],
+  entities: [User, Article, Comment, CommentReply, Like],
   synchronize: true,
 };

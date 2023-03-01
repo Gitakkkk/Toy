@@ -11,7 +11,7 @@ import { Comment } from 'src/comment/comment.entity';
 import * as moment from 'moment';
 
 @Entity()
-export class Post {
+export class Article {
   @PrimaryGeneratedColumn()
   id: number;
 

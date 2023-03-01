@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
-import { PostModule } from './post/post.module';
+import { ArticleModule } from './article/article.module';
 import { CommentModule } from './comment/comment.module';
 import { LikeModule } from './like/like.module';
 import { CommentReplyModule } from './comment_reply/comment_reply.module';
@@ -11,7 +11,7 @@ import { typeORMConfig } from './db/typeorm.config';
   imports: [
     TypeOrmModule.forRoot(typeORMConfig),
     UserModule,
-    PostModule,
+    ArticleModule,
     CommentModule,
     LikeModule,
     CommentReplyModule,

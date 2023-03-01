@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Post } from 'src/post/post.entity';
+import { Article } from 'src/article/article.entity';
 import { User } from 'src/user/user.entity';
 import * as moment from 'moment';
 
@@ -11,8 +11,8 @@ export class Like {
   @ManyToOne(() => User, (user) => user.id)
   user_id: User;
 
-  @ManyToOne(() => Post, (post) => post.id)
-  post_id: Post;
+  @ManyToOne(() => Article, (article) => article.id)
+  post_id: Article;
 
   @Column({
     default: moment().format('YYYY-MM-DD HH:mm:ss'),

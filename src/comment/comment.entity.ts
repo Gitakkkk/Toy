@@ -6,7 +6,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { CommentReply } from 'src/comment_reply/comment_reply.entity';
-import { Post } from 'src/post/post.entity';
+import { Article } from 'src/article/article.entity';
 import { User } from 'src/user/user.entity';
 import * as moment from 'moment';
 
@@ -18,8 +18,8 @@ export class Comment {
   @ManyToOne(() => User, (user) => user.id)
   user_id: User;
 
-  @ManyToOne(() => Post, (post) => post.id)
-  post_id: Post;
+  @ManyToOne(() => Article, (article) => article.id)
+  post_id: Article;
 
   @Column()
   content: string;
