@@ -31,6 +31,7 @@ export class CommentController {
     );
   }
 
+  @UseGuards(JwtAccessGuard)
   @Get()
   commentGet(@Request() req: any): Promise<Comment[]> {
     const user_id = req.user.id;
