@@ -9,10 +9,10 @@ export class Like {
   id: number;
 
   @ManyToOne(() => User, (user) => user.id)
-  user_id: User;
+  user_id: number;
 
   @ManyToOne(() => Article, (article) => article.id)
-  post_id: Article;
+  post_id: number;
 
   @Column({
     default: moment().format('YYYY-MM-DD HH:mm:ss'),
