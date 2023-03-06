@@ -22,7 +22,7 @@ export class CommentController {
     @Request() req: any,
     @Param('post_id') post_id: string,
     @Body() commentCreateDto: CommentCreateDto,
-  ): void {
+  ): Promise<void> {
     const user_id = req.user.id;
     return this.commentService.commentCreate(
       user_id,

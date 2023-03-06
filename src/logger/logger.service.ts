@@ -103,7 +103,6 @@ export class LoggerService {
   }
 
   async error(message: string, metadata?: any) {
-    console.time('toy');
     const {
       functionName,
       id,
@@ -130,6 +129,5 @@ export class LoggerService {
     });
 
     this.logger.error(message, { functionName, id });
-    console.timeEnd('toy');
   }
 }
