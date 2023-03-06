@@ -34,9 +34,9 @@ export class Article {
   })
   updatedAt: Date;
 
-  @OneToMany(() => Comment, (comment) => comment.user_id)
+  @OneToMany(() => Comment, (comment) => comment.post_id)
   comments: Comment[];
 
-  @OneToMany(() => Like, (like) => like.user_id)
+  @OneToMany(() => Like, (like) => like.post_id)
   likes: Like[];
 }
