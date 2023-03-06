@@ -9,10 +9,10 @@ export class CommentReply {
   id: number;
 
   @ManyToOne(() => User, (user) => user.id)
-  user_id: User;
+  user_id: number;
 
   @ManyToOne(() => Comment, (comment) => comment.id)
-  comment_id: Comment;
+  comment_id: number;
 
   @Column()
   content: string;
