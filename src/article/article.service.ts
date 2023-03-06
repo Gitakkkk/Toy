@@ -17,7 +17,7 @@ export class ArticleService {
     private readonly loggerService: LoggerService,
   ) {}
 
-  async postCreate(postCreateDto: ArticleCreateDto): Promise<void> {
+  async postCreate(id: number, postCreateDto: ArticleCreateDto): Promise<void> {
     const { title, content } = postCreateDto;
     this.loggerService.info('calling postCreate', {
       functionName: 'postCreate',
@@ -27,6 +27,7 @@ export class ArticleService {
         "new BadRequestException('should not null value')",
         {
           functionName: 'postCreate',
+          id,
         },
       );
       throw new BadRequestException('should not null value');
@@ -34,12 +35,14 @@ export class ArticleService {
     const posting = this.articleRepository.create({
       title,
       content,
+      user_id: id,
     });
     try {
       await this.articleRepository.save(posting);
     } catch (error) {
       this.loggerService.error(`new InternalServerErrorException() ${error}`, {
         functionName: 'postCreate',
+        id,
       });
       throw new InternalServerErrorException();
     }

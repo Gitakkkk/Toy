@@ -16,7 +16,7 @@ export class Article {
   id: number;
 
   @ManyToOne(() => User, (user) => user.id)
-  user_id: User;
+  user_id: number;
 
   @Column()
   title: string;

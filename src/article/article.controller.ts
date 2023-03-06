@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { JwtAccessGuard } from 'src/user/guards/access-token.guard';
 import { ArticleCreateDto } from './dto/articleCreateDto';
 import { ArticleService } from './article.service';
@@ -10,8 +17,12 @@ export class ArticleController {
 
   @UseGuards(JwtAccessGuard)
   @Post()
-  postCreate(@Body() postCreateDto: ArticleCreateDto): Promise<void> {
-    return this.postService.postCreate(postCreateDto);
+  postCreate(
+    @Request() req: any,
+    @Body() postCreateDto: ArticleCreateDto,
+  ): Promise<void> {
+    const id = req.user.id;
+    return this.postService.postCreate(id, postCreateDto);
   }
 
   @UseGuards(JwtAccessGuard)
