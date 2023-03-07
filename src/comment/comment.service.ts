@@ -13,7 +13,7 @@ export class CommentService {
 
   async commentCreate(
     user_id: number,
-    post_id: number,
+    article_id: number,
     commentCreateDto: CommentCreateDto,
   ): Promise<void> {
     this.loggerService.info('calling commentCreate', {
@@ -23,7 +23,7 @@ export class CommentService {
     try {
       const comment = this.commentRepository.create({
         user_id,
-        post_id,
+        article_id,
         content: commentCreateDto.content,
       });
       await this.commentRepository.save(comment);
@@ -36,10 +36,10 @@ export class CommentService {
     }
   }
 
-  async commentGet(user_id: number): Promise<Comment[]> {
+  async commentGet(user: number): Promise<Comment[]> {
     this.loggerService.info('calling commentGet', {
       functionName: 'commentGet',
-      id: user_id,
+      id: user,
     });
     try {
       const comments = await this.commentRepository.find();
@@ -47,7 +47,7 @@ export class CommentService {
     } catch (error) {
       this.loggerService.error(`new InternalServerErrorException() ${error}`, {
         functionName: 'commentGet',
-        id: user_id,
+        id: user,
       });
       throw new InternalServerErrorException();
     }

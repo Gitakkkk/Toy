@@ -9,7 +9,7 @@ export class LikeService {
     private loggerService: LoggerService,
   ) {}
 
-  async likeCreate(user_id: number, post_id: number): Promise<void> {
+  async likeCreate(user_id: number, article_id: number): Promise<void> {
     this.loggerService.info('calling likeCreate', {
       functionName: 'likeCreate',
       id: user_id,
@@ -18,14 +18,14 @@ export class LikeService {
       const existLike = await this.likeRepository.findOne({
         where: {
           user_id,
-          post_id,
+          article_id,
         },
       });
       if (existLike) await this.likeRepository.delete(existLike);
       else {
         const like = this.likeRepository.create({
           user_id,
-          post_id,
+          article_id,
         });
         await this.likeRepository.save(like);
       }

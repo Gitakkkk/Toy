@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Article } from 'src/article/article.entity';
 import { User } from 'src/user/user.entity';
 import * as moment from 'moment';
@@ -8,11 +14,19 @@ export class Like {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @Column({ name: 'user_id' })
   user_id: number;
 
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'user_id' })
+  userId: User;
+
+  @Column({ name: 'article_id' })
+  article_id: number;
+
   @ManyToOne(() => Article, (article) => article.id)
-  post_id: number;
+  @JoinColumn({ name: 'article_id' })
+  articleId: Article;
 
   @Column({
     default: moment().format('YYYY-MM-DD HH:mm:ss'),

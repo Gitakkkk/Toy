@@ -18,7 +18,7 @@ export class CommentReplyService {
     const { content, comment_id } = commentReplyCreateDto;
     this.loggerService.info('calling commentReplyCreate', {
       functionName: 'commentReplyCreate',
-      id: user_id,
+      id: commentReplyCreateDto,
     });
     try {
       const commentReply = this.commentReplyRepository.create({

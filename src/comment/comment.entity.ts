@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { CommentReply } from 'src/comment_reply/comment_reply.entity';
 import { Article } from 'src/article/article.entity';
@@ -15,11 +16,19 @@ export class Comment {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @Column({ name: 'user_id' })
   user_id: number;
 
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  userId: User;
+
+  @Column({ name: 'article_id' })
+  article_id: number;
+
   @ManyToOne(() => Article, (article) => article.id)
-  post_id: number;
+  @JoinColumn({ name: 'article_id' })
+  articleId: Article;
 
   @Column()
   content: string;
@@ -33,7 +42,4 @@ export class Comment {
     default: moment().format('YYYY-MM-DD HH:mm:ss'),
   })
   updatedAt: Date;
-
-  @OneToMany(() => CommentReply, (commentReply) => commentReply.user_id)
-  comment_replies: CommentReply[];
 }

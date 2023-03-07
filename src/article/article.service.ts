@@ -48,12 +48,16 @@ export class ArticleService {
     }
   }
 
-  async postGet(): Promise<Article[]> {
+  async postGet(user_id: number): Promise<Article[]> {
     this.loggerService.info('calling getPosts', {
       functionName: 'getPosts',
     });
     try {
-      const posts = await this.articleRepository.find();
+      const posts = await this.articleRepository.find({
+        where: {
+          user_id,
+        },
+      });
       return posts;
     } catch (error) {
       this.loggerService.error(`new InternalServerErrorException() ${error}`, {

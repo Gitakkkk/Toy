@@ -17,16 +17,16 @@ export class CommentController {
   constructor(private commentService: CommentService) {}
 
   @UseGuards(JwtAccessGuard)
-  @Post(':post_id')
+  @Post(':article_id')
   commentCreate(
     @Request() req: any,
-    @Param('post_id') post_id: string,
+    @Param('article_id') article_id: string,
     @Body() commentCreateDto: CommentCreateDto,
   ): Promise<void> {
     const user_id = req.user.id;
     return this.commentService.commentCreate(
       user_id,
-      Number(post_id),
+      Number(article_id),
       commentCreateDto,
     );
   }

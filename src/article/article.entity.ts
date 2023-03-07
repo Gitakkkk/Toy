@@ -3,11 +3,9 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
-  OneToMany,
+  JoinColumn,
 } from 'typeorm';
-import { Like } from 'src/like/like.entity';
 import { User } from 'src/user/user.entity';
-import { Comment } from 'src/comment/comment.entity';
 import * as moment from 'moment';
 
 @Entity()
@@ -15,8 +13,12 @@ export class Article {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.id)
+  @Column({ name: 'user_id' })
   user_id: number;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  userId: User;
 
   @Column()
   title: string;
@@ -33,10 +35,4 @@ export class Article {
     default: moment().format('YYYY-MM-DD HH:mm:ss'),
   })
   updatedAt: Date;
-
-  @OneToMany(() => Comment, (comment) => comment.post_id)
-  comments: Comment[];
-
-  @OneToMany(() => Like, (like) => like.post_id)
-  likes: Like[];
 }

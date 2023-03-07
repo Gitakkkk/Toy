@@ -5,6 +5,7 @@ import {
   Post,
   UseGuards,
   Request,
+  Query,
 } from '@nestjs/common';
 import { JwtAccessGuard } from 'src/user/guards/access-token.guard';
 import { ArticleCreateDto } from './dto/articleCreateDto';
@@ -21,13 +22,13 @@ export class ArticleController {
     @Request() req: any,
     @Body() postCreateDto: ArticleCreateDto,
   ): Promise<void> {
-    const id = req.user.id;
-    return this.postService.postCreate(id, postCreateDto);
+    const user_id = req.user.id;
+    return this.postService.postCreate(user_id, postCreateDto);
   }
 
   @UseGuards(JwtAccessGuard)
   @Get()
-  postGet(): Promise<Article[]> {
-    return this.postService.postGet();
+  postGet(@Query('user_id') user_id: string): Promise<Article[]> {
+    return this.postService.postGet(Number(user_id));
   }
 }

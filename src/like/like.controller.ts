@@ -14,12 +14,12 @@ export class LikeController {
   constructor(private likeService: LikeService) {}
 
   @UseGuards(JwtAccessGuard)
-  @Post(':post_id')
+  @Post(':article_id')
   likeCreate(
     @Request() req: any,
-    @Param('post_id') post_id: string,
+    @Param('article_id') article_id: string,
   ): Promise<void> {
     const user_id = req.user.id;
-    return this.likeService.likeCreate(user_id, Number(post_id));
+    return this.likeService.likeCreate(user_id, Number(article_id));
   }
 }
