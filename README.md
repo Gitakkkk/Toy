@@ -1,5 +1,5 @@
 ### Architecture
-<img src="https://user-images.githubusercontent.com/97418591/220929999-0786f85b-241c-40fe-a24d-c91844d45a28.jpg" width="700" height="400"/>
+<img src="https://user-images.githubusercontent.com/97418591/223325763-9f005020-ba16-4846-a81c-2dc177193f61.jpg" width="700" height="400"/>
 
 <br />
 
